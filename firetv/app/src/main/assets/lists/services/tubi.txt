@@ -2,6 +2,10 @@
 # Tubi is AVOD (free with ads), heavily ad-supported.
 # IMPORTANT: uapi.adrise.tv is in the allowlist and must NOT be blocked.
 
+# Tubi direct ad serving
+ads.tubi.tv
+adserver.tubi.tv
+
 # Tubi/Adrise ad infrastructure
 ads.adrise.tv
 tracking.adrise.tv

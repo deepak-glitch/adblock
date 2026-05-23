@@ -798,7 +798,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||srv.spotxchange.com^",
+      "urlFilter": "||spotxchange.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -822,7 +822,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||search.spotxchange.com^",
+      "urlFilter": "||srv.spotxchange.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -846,7 +846,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||js.spotx.tv^",
+      "urlFilter": "||search.spotxchange.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -870,7 +870,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||s.amazon-adsystem.com^",
+      "urlFilter": "||js.spotx.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -894,7 +894,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||aax.amazon-adsystem.com^",
+      "urlFilter": "||spotx.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -918,7 +918,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||c.amazon-adsystem.com^",
+      "urlFilter": "||s.amazon-adsystem.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -942,7 +942,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||aps.amazon.com^",
+      "urlFilter": "||aax.amazon-adsystem.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -966,7 +966,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||connect.facebook.net^",
+      "urlFilter": "||c.amazon-adsystem.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -990,7 +990,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pixel.facebook.com^",
+      "urlFilter": "||aps.amazon.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1014,7 +1014,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||static.chartbeat.com^",
+      "urlFilter": "||connect.facebook.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1038,7 +1038,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ping.chartbeat.net^",
+      "urlFilter": "||pixel.facebook.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1062,7 +1062,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cdn.optimizely.com^",
+      "urlFilter": "||static.chartbeat.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1086,7 +1086,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||logx.optimizely.com^",
+      "urlFilter": "||ping.chartbeat.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1110,7 +1110,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||app.link^",
+      "urlFilter": "||cdn.optimizely.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1134,7 +1134,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||fnrd.net^",
+      "urlFilter": "||logx.optimizely.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1158,7 +1158,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||branch.io^",
+      "urlFilter": "||app.link^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1182,7 +1182,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.freewheel.tv^",
+      "urlFilter": "||fnrd.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1206,7 +1206,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cdn.freewheel.tv^",
+      "urlFilter": "||branch.io^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1230,7 +1230,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||23media.freewheel.tv^",
+      "urlFilter": "||ads.freewheel.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1254,7 +1254,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||fwmrm.net^",
+      "urlFilter": "||cdn.freewheel.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1278,7 +1278,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||px.fwmrm.net^",
+      "urlFilter": "||23media.freewheel.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1302,7 +1302,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cdn2.fwmrm.net^",
+      "urlFilter": "||fwmrm.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1326,7 +1326,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cdn.tremormedia.com^",
+      "urlFilter": "||px.fwmrm.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1350,7 +1350,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tremorvideo.com^",
+      "urlFilter": "||cdn2.fwmrm.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1374,7 +1374,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||insight.adsrvr.org^",
+      "urlFilter": "||cdn.tremormedia.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1398,7 +1398,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||js.adsrvr.org^",
+      "urlFilter": "||tremorvideo.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1422,7 +1422,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||match.adsrvr.org^",
+      "urlFilter": "||insight.adsrvr.org^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1446,7 +1446,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||casalemedia.com^",
+      "urlFilter": "||js.adsrvr.org^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1470,7 +1470,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||simage2.casalemedia.com^",
+      "urlFilter": "||match.adsrvr.org^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1494,7 +1494,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||js-sec.indexww.com^",
+      "urlFilter": "||casalemedia.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1518,7 +1518,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||delivery.opsx.net^",
+      "urlFilter": "||simage2.casalemedia.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1542,7 +1542,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||u.openx.net^",
+      "urlFilter": "||js-sec.indexww.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1566,7 +1566,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ox-d.openx.net^",
+      "urlFilter": "||delivery.opsx.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1590,7 +1590,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||secure.adnxs.com^",
+      "urlFilter": "||u.openx.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1614,7 +1614,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ib.adnxs.com^",
+      "urlFilter": "||ox-d.openx.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1638,7 +1638,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cdn.adnxs.com^",
+      "urlFilter": "||secure.adnxs.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1662,7 +1662,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||fastlane.rubiconproject.com^",
+      "urlFilter": "||ib.adnxs.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1686,7 +1686,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||prebid-server.rubiconproject.com^",
+      "urlFilter": "||cdn.adnxs.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1710,7 +1710,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.pubmatic.com^",
+      "urlFilter": "||fastlane.rubiconproject.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1734,7 +1734,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||image6.pubmatic.com^",
+      "urlFilter": "||prebid-server.rubiconproject.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1758,7 +1758,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||simage2.pubmatic.com^",
+      "urlFilter": "||ads.pubmatic.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1782,7 +1782,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||idsync.rlcdn.com^",
+      "urlFilter": "||image6.pubmatic.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1806,7 +1806,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||api.rlcdn.com^",
+      "urlFilter": "||simage2.pubmatic.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1830,7 +1830,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||p.rlcdn.com^",
+      "urlFilter": "||idsync.rlcdn.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1854,7 +1854,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||eu.acxiom-online.com^",
+      "urlFilter": "||api.rlcdn.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1878,7 +1878,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||us.acxiom-online.com^",
+      "urlFilter": "||p.rlcdn.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1902,7 +1902,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||conviva.com^",
+      "urlFilter": "||eu.acxiom-online.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1926,7 +1926,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||stat.conviva.com^",
+      "urlFilter": "||us.acxiom-online.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1950,7 +1950,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cws.conviva.com^",
+      "urlFilter": "||conviva.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1974,7 +1974,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pulse.conviva.com^",
+      "urlFilter": "||stat.conviva.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1998,7 +1998,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.yieldmo.com^",
+      "urlFilter": "||cws.conviva.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2022,7 +2022,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||native.sharethrough.com^",
+      "urlFilter": "||pulse.conviva.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2046,7 +2046,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||s.sharethrough.com^",
+      "urlFilter": "||ads.yieldmo.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2070,7 +2070,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||sac.33across.com^",
+      "urlFilter": "||native.sharethrough.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2089,6 +2089,54 @@
   },
   {
     "id": 200087,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||s.sharethrough.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 200088,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||sac.33across.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 200089,
     "priority": 1,
     "action": {
       "type": "block"

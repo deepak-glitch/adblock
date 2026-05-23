@@ -15,6 +15,10 @@ tracker.auditude.com
 # Comcast/Peacock ad gateway
 pgateway.comcast.net
 
+# Peacock direct ad serving
+ads.peacocktv.com
+adserver.peacocktv.com
+
 # Peacock-specific tracking
 log.peacocktv.com
 metrics.peacocktv.com

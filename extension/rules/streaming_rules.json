@@ -414,7 +414,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tracking.hulu.com^",
+      "urlFilter": "||ads.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -438,7 +438,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||log.hulu.com^",
+      "urlFilter": "||ad.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -462,7 +462,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||smetrics.hulu.com^",
+      "urlFilter": "||tracking.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -486,7 +486,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pixel.hulu.com^",
+      "urlFilter": "||log.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -510,7 +510,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||abcnews-adtag.hulu.com^",
+      "urlFilter": "||smetrics.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -534,7 +534,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||vod-adtag.hulu.com^",
+      "urlFilter": "||pixel.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -558,7 +558,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.max.com^",
+      "urlFilter": "||abcnews-adtag.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -582,7 +582,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.hbomax.com^",
+      "urlFilter": "||vod-adtag.hulu.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -606,7 +606,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||adserver.max.com^",
+      "urlFilter": "||ads.max.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -630,7 +630,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tracking.max.com^",
+      "urlFilter": "||ads.hbomax.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -654,7 +654,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||analytics.hbomax.com^",
+      "urlFilter": "||adserver.max.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -678,7 +678,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||log.hbomax.com^",
+      "urlFilter": "||tracking.max.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -702,7 +702,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||bam.max.com^",
+      "urlFilter": "||analytics.hbomax.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -726,7 +726,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.warnermediacdn.com^",
+      "urlFilter": "||log.hbomax.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -750,7 +750,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||warnermedia.demdex.net^",
+      "urlFilter": "||bam.max.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -774,7 +774,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||max.fwmrm.net^",
+      "urlFilter": "||ads.warnermediacdn.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -798,7 +798,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||wbd.fwmrm.net^",
+      "urlFilter": "||warnermedia.demdex.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -822,7 +822,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||hbo.fwmrm.net^",
+      "urlFilter": "||max.fwmrm.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -846,7 +846,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||smetrics.max.com^",
+      "urlFilter": "||wbd.fwmrm.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -870,7 +870,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pixel.max.com^",
+      "urlFilter": "||hbo.fwmrm.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -894,7 +894,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.paramount.com^",
+      "urlFilter": "||smetrics.max.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -918,7 +918,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.cbs.com^",
+      "urlFilter": "||pixel.max.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -942,7 +942,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||mab.cbsi.com^",
+      "urlFilter": "||ads.paramount.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -966,7 +966,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ad.cbsig.net^",
+      "urlFilter": "||ads.cbs.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -990,7 +990,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.mtvnservices.com^",
+      "urlFilter": "||mab.cbsi.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1014,7 +1014,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||delivery.mtvnservices.com^",
+      "urlFilter": "||ad.cbsig.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1038,7 +1038,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||media.mtvnservices.com^",
+      "urlFilter": "||ads.mtvnservices.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1062,7 +1062,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cbs.demdex.net^",
+      "urlFilter": "||delivery.mtvnservices.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1086,7 +1086,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||paramount.demdex.net^",
+      "urlFilter": "||media.mtvnservices.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1110,7 +1110,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||cbsi.demdex.net^",
+      "urlFilter": "||cbs.demdex.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1134,7 +1134,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tags.tiqcdn.com^",
+      "urlFilter": "||paramount.demdex.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1158,7 +1158,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||collect.tiqcdn.com^",
+      "urlFilter": "||cbsi.demdex.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1182,7 +1182,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||smetrics.cbs.com^",
+      "urlFilter": "||tags.tiqcdn.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1206,7 +1206,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||smetrics.paramount.com^",
+      "urlFilter": "||collect.tiqcdn.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1230,7 +1230,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||smetrics.cbsnews.com^",
+      "urlFilter": "||smetrics.cbs.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1254,7 +1254,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pixel.paramount.com^",
+      "urlFilter": "||smetrics.paramount.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1278,7 +1278,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.nbcuni.com^",
+      "urlFilter": "||smetrics.cbsnews.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1302,7 +1302,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads-delivery.nbcuni.com^",
+      "urlFilter": "||pixel.paramount.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1326,7 +1326,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||adserver.nbcuni.com^",
+      "urlFilter": "||ads.nbcuni.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1350,7 +1350,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tracking.nbcuni.com^",
+      "urlFilter": "||ads-delivery.nbcuni.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1374,7 +1374,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||analytics.nbcuni.com^",
+      "urlFilter": "||adserver.nbcuni.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1398,7 +1398,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||manifest.auditude.com^",
+      "urlFilter": "||tracking.nbcuni.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1422,7 +1422,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ep.auditude.com^",
+      "urlFilter": "||analytics.nbcuni.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1446,7 +1446,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tracker.auditude.com^",
+      "urlFilter": "||manifest.auditude.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1470,7 +1470,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pgateway.comcast.net^",
+      "urlFilter": "||ep.auditude.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1494,7 +1494,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||log.peacocktv.com^",
+      "urlFilter": "||tracker.auditude.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1518,7 +1518,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||metrics.peacocktv.com^",
+      "urlFilter": "||pgateway.comcast.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1542,7 +1542,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pixel.peacocktv.com^",
+      "urlFilter": "||ads.peacocktv.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1566,7 +1566,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tags.nbcuni.com^",
+      "urlFilter": "||adserver.peacocktv.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1590,7 +1590,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.pluto.tv^",
+      "urlFilter": "||log.peacocktv.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1614,7 +1614,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||adserver.pluto.tv^",
+      "urlFilter": "||metrics.peacocktv.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1638,7 +1638,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tracking.pluto.tv^",
+      "urlFilter": "||pixel.peacocktv.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1662,7 +1662,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||analytics.pluto.tv^",
+      "urlFilter": "||tags.nbcuni.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1686,7 +1686,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||creativelibrary.pluto.tv^",
+      "urlFilter": "||ads.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1710,7 +1710,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||log.pluto.tv^",
+      "urlFilter": "||adserver.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1734,7 +1734,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||metrics.pluto.tv^",
+      "urlFilter": "||tracking.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1758,7 +1758,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||sync.pluto.tv^",
+      "urlFilter": "||analytics.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1782,7 +1782,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pluto.demdex.net^",
+      "urlFilter": "||creativelibrary.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1806,7 +1806,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.adrise.tv^",
+      "urlFilter": "||log.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1830,7 +1830,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||tracking.adrise.tv^",
+      "urlFilter": "||metrics.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1854,7 +1854,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||log.adrise.tv^",
+      "urlFilter": "||sync.pluto.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1878,7 +1878,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads-cdn.adrise.tv^",
+      "urlFilter": "||pluto.demdex.net^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1902,7 +1902,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||sync.adrise.tv^",
+      "urlFilter": "||ads.tubi.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1926,7 +1926,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||metrics.adrise.tv^",
+      "urlFilter": "||adserver.tubi.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1950,7 +1950,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||pixel.adrise.tv^",
+      "urlFilter": "||ads.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1974,7 +1974,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||analytics.adrise.tv^",
+      "urlFilter": "||tracking.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -1998,7 +1998,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.foxtv.com^",
+      "urlFilter": "||log.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2022,7 +2022,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.fox.com^",
+      "urlFilter": "||ads-cdn.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2046,7 +2046,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||analytics.fox.com^",
+      "urlFilter": "||sync.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2070,7 +2070,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ad.youtube.com^",
+      "urlFilter": "||metrics.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2094,7 +2094,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||ads.youtube.com^",
+      "urlFilter": "||pixel.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2118,7 +2118,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||survey.youtube.com^",
+      "urlFilter": "||analytics.adrise.tv^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2142,7 +2142,7 @@
       "type": "block"
     },
     "condition": {
-      "urlFilter": "||www.youtube-nocookie.com^",
+      "urlFilter": "||ads.foxtv.com^",
       "resourceTypes": [
         "main_frame",
         "sub_frame",
@@ -2161,6 +2161,150 @@
   },
   {
     "id": 91,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||ads.fox.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 92,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||analytics.fox.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 93,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||ad.youtube.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 94,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||ads.youtube.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 95,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||survey.youtube.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 96,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "||www.youtube-nocookie.com^",
+      "resourceTypes": [
+        "main_frame",
+        "sub_frame",
+        "stylesheet",
+        "script",
+        "image",
+        "font",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 97,
     "priority": 1,
     "action": {
       "type": "block"

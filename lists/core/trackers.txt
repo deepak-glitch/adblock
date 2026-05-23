@@ -55,9 +55,11 @@ widget.criteo.com
 gum.criteo.com
 
 # SpotX (video ad exchange, used by Pluto TV, Peacock, etc.)
+spotxchange.com
 srv.spotxchange.com
 search.spotxchange.com
 js.spotx.tv
+spotx.tv
 
 # Amazon advertising (DSP)
 s.amazon-adsystem.com

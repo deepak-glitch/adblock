@@ -9,6 +9,10 @@ ads.hulustream.com
 ads-e-darwin-lb.hulustream.com
 darwin.huluads.com
 
+# Hulu direct ad serving
+ads.hulu.com
+ad.hulu.com
+
 # Hulu tracking and analytics
 tracking.hulu.com
 log.hulu.com
