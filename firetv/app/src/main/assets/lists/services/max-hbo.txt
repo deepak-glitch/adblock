@@ -23,3 +23,15 @@ hbo.fwmrm.net
 # Max tracking
 smetrics.max.com
 pixel.max.com
+
+# Aggressive Max telemetry & ad targeting
+events.max.com
+metrics.hbomax.com
+analytics.max.com
+beacon.max.com
+collector.max.com
+data.hbo.com
+events.hbo.com
+max.demdex.net
+hbo.demdex.net
+warnermedia.tt.omtrdc.net

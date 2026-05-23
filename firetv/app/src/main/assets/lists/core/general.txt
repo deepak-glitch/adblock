@@ -68,3 +68,32 @@ s.sharethrough.com
 # 33Across
 sac.33across.com
 de.tynt.com
+
+# ─── Amazon / Fire TV ad infrastructure ─────────────────────────────────
+# Fire TV bakes Amazon advertising into the OS. These power home-screen
+# ads, voice-ad targeting, and device telemetry feeding Amazon's DSP.
+device-metrics-us.amazon.com
+device-metrics-us-2.amazon.com
+device-metrics-eu.amazon.com
+fls-na.amazon.com
+fls-eu.amazon.com
+api-amazon-ads.amazon.com
+ads.amazon.com
+advertising.amazon.com
+unagi.amazon.com
+unagi-na.amazon.com
+mads.amazon.com
+prime-stats.amazon.com
+client-telemetry.amazon.com
+hb.amazon-adsystem.com
+device-messaging-na.amazon.com
+dtcn.amazon.com
+
+# ─── More cross-platform ad/measurement coverage ────────────────────────
+cdn.adsafeprotected.com
+static.adsafeprotected.com
+geo.moatads.com
+v.moatads.com
+mb.moatads.com
+secure-au.imrworldwide.com
+secure-eu.imrworldwide.com

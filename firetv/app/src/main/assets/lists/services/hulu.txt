@@ -22,3 +22,23 @@ pixel.hulu.com
 # Hulu ad tech partners
 abcnews-adtag.hulu.com
 vod-adtag.hulu.com
+
+# Aggressive Hulu tracking & telemetry
+# These power ad targeting and personalization. Blocking won't break Hulu but
+# will degrade Hulu's ability to choose which ads to stitch into your stream.
+t.huluim.com
+events.hulu.com
+vortex.hulu.com
+metrics.hulu.com
+beacon.hulu.com
+collector.hulu.com
+prod-collector.hulu.com
+ms.huluim.com
+guce.hulu.com
+
+# Hulu third-party ad pixel partners
+hulu.demdex.net
+hulu.tt.omtrdc.net
+
+# Hulu/Disney shared ad infrastructure
+ads.adobedtm.com
