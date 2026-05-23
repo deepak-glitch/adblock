@@ -24,23 +24,15 @@ import java.net.InetAddress
 import java.nio.ByteBuffer
 
 /**
- * Local-VPN ad blocker — two blocking layers:
+ * Local-VPN ad blocker.
  *
- * Layer 1 — DNS (UDP port 53):
- *   Intercepts every DNS query. Blocked domains → NXDOMAIN reply inline.
- *   Allowed domains → forwarded to upstream (8.8.8.8) and relayed back.
+ * Only DNS traffic (UDP port 53) is routed through the tun — all other
+ * traffic flows normally over the real network so streaming is never
+ * interrupted.
  *
- * Layer 2 — TCP SNI (HTTPS port 443):
- *   Routes ALL TCP traffic through a transparent proxy (TcpProxy).
- *   For port-443 connections the TLS ClientHello is read and the SNI is
- *   extracted.  If the hostname is in the blocklist the connection is RST'd
- *   immediately, before any data is sent.  This catches ad servers that
- *   bypass DNS (hardcoded IPs, DNS-over-HTTPS apps, cached DNS entries).
- *   Non-blocked connections are forwarded transparently via protect()ed sockets.
- *
- * Other UDP (non-DNS):
- *   Also forwarded via protect()ed DatagramSockets so non-DNS UDP (QUIC, etc.)
- *   continues to work.
+ * For each DNS query:
+ *   - Blocked domain → NXDOMAIN reply (inline, no upstream contact)
+ *   - Allowed domain → forwarded to upstream (8.8.8.8) and relayed back
  */
 class AdBlockVpnService : VpnService() {
 
@@ -82,9 +74,10 @@ class AdBlockVpnService : VpnService() {
             .setSession(getString(R.string.app_name))
             .addAddress(VPN_ADDRESS, VPN_PREFIX)
             .addDnsServer(VPN_DNS)
-            // Route ALL traffic through us so we can do TCP/SNI blocking in
-            // addition to DNS blocking.
-            .addRoute("0.0.0.0", 0)
+            // Route ONLY the fake DNS server IP through the tun.
+            // All other traffic (TCP, UDP video streams, etc.) flows
+            // through the real network — nothing is intercepted or broken.
+            .addRoute(VPN_DNS, 32)
             .setMtu(1500)
 
         // Exclude ourselves — prevents recursive routing of our upstream sockets
@@ -97,7 +90,7 @@ class AdBlockVpnService : VpnService() {
 
         isRunning = true
         startForeground(NOTIF_ID, buildNotification())
-        Log.i(TAG, "VPN started — blocklist=${BlocklistManager.blockedCount()} domains, dual-layer mode")
+        Log.i(TAG, "VPN started — blocklist=${BlocklistManager.blockedCount()} domains")
 
         scope.launch { tunLoop() }
     }
@@ -123,10 +116,9 @@ class AdBlockVpnService : VpnService() {
         val output = FileOutputStream(tun.fileDescriptor)
         val buf    = ByteArray(32768)
 
-        val upstreamHost  = Settings.getUpstreamDns(this)
-        val upstreamAddr  = InetAddress.getByName(upstreamHost)
-        val dnsSocket     = DatagramSocket().apply { protect(this) }
-        val tcpProxy      = TcpProxy(this@AdBlockVpnService, output, scope)
+        val upstreamHost = Settings.getUpstreamDns(this)
+        val upstreamAddr = InetAddress.getByName(upstreamHost)
+        val dnsSocket    = DatagramSocket().apply { protect(this) }
 
         while (isRunning) {
             try {
@@ -134,7 +126,7 @@ class AdBlockVpnService : VpnService() {
                 if (len <= 0) { delay(10); continue }
 
                 val pkt = buf.copyOf(len)
-                handlePacket(pkt, len, output, dnsSocket, upstreamAddr, tcpProxy)
+                handlePacket(pkt, len, output, dnsSocket, upstreamAddr)
             } catch (e: Exception) {
                 if (isRunning) Log.w(TAG, "tunLoop: ${e.message}")
                 delay(50)
@@ -142,7 +134,6 @@ class AdBlockVpnService : VpnService() {
         }
 
         try { dnsSocket.close() } catch (_: Exception) {}
-        tcpProxy.cleanup()
     }
 
     // ── Per-packet dispatch ───────────────────────────────────────────────
@@ -151,87 +142,49 @@ class AdBlockVpnService : VpnService() {
         pkt: ByteArray, len: Int,
         output: FileOutputStream,
         dnsSocket: DatagramSocket,
-        upstreamAddr: InetAddress,
-        tcpProxy: TcpProxy
-    ) {
-        if (pkt.size < 20) return
-        val version = (pkt[0].toInt() ushr 4) and 0x0F
-        if (version != 4) return               // IPv4 only
-
-        val ihl   = (pkt[0].toInt() and 0x0F) * 4
-        if (ihl < 20 || ihl > len) return
-        val proto = pkt[9].toInt() and 0xFF
-
-        when (proto) {
-            6  -> tcpProxy.handlePacket(pkt, ihl)   // TCP → SNI proxy
-            17 -> handleUdp(pkt, len, ihl, output, dnsSocket, upstreamAddr)
-            // Other protocols (ICMP, etc.) are silently dropped
-        }
-    }
-
-    // ── UDP handler (DNS + other UDP) ─────────────────────────────────────
-
-    private suspend fun handleUdp(
-        pkt: ByteArray, len: Int, ihl: Int,
-        output: FileOutputStream,
-        dnsSocket: DatagramSocket,
         upstreamAddr: InetAddress
     ) {
+        // Only IPv4 + UDP + dst port 53
+        if (pkt.size < 28) return
+        val version = (pkt[0].toInt() ushr 4) and 0x0F
+        if (version != 4) return
+
+        val ihl = (pkt[0].toInt() and 0x0F) * 4
+        if (ihl < 20 || ihl > len) return
+        if (pkt[9].toInt() and 0xFF != 17) return  // UDP only
+
         val udpStart = ihl
         if (udpStart + 8 > len) return
-
         val srcPort = ((pkt[udpStart].toInt() and 0xFF) shl 8) or (pkt[udpStart + 1].toInt() and 0xFF)
         val dstPort = ((pkt[udpStart + 2].toInt() and 0xFF) shl 8) or (pkt[udpStart + 3].toInt() and 0xFF)
+        if (dstPort != 53) return
 
-        if (dstPort == 53) {
-            // ── DNS ──────────────────────────────────────────────────────
-            val dnsStart = udpStart + 8
-            val dnsLen   = len - dnsStart
-            if (dnsLen < 12) return
+        val dnsStart = udpStart + 8
+        val dnsLen   = len - dnsStart
+        if (dnsLen < 12) return
 
-            val dns  = pkt.copyOfRange(dnsStart, dnsStart + dnsLen)
-            val name = DnsPacket.extractQName(dns) ?: return
+        val dns  = pkt.copyOfRange(dnsStart, dnsStart + dnsLen)
+        val name = DnsPacket.extractQName(dns) ?: return
 
-            if (BlocklistManager.isBlocked(name)) {
-                Stats.recordBlocked()
-                val reply  = DnsPacket.buildNxDomainResponse(dns) ?: return
-                val ipReply = IpPacket.buildUdpResponse(pkt, ihl, srcPort, reply)
-                try { output.write(ipReply) } catch (e: Exception) { Log.w(TAG, "write: ${e.message}") }
-                return
-            }
+        if (BlocklistManager.isBlocked(name)) {
+            Stats.recordBlocked()
+            val reply   = DnsPacket.buildNxDomainResponse(dns) ?: return
+            val ipReply = IpPacket.buildUdpResponse(pkt, ihl, srcPort, reply)
+            try { output.write(ipReply) } catch (e: Exception) { Log.w(TAG, "write: ${e.message}") }
+            return
+        }
 
-            Stats.recordAllowed()
-            try {
-                dnsSocket.send(DatagramPacket(dns, dns.size, upstreamAddr, 53))
-                val rb  = ByteArray(4096)
-                val rp  = DatagramPacket(rb, rb.size)
-                dnsSocket.soTimeout = 3000
-                dnsSocket.receive(rp)
-                val replyDns = rb.copyOf(rp.length)
-                output.write(IpPacket.buildUdpResponse(pkt, ihl, srcPort, replyDns))
-            } catch (e: Exception) {
-                val sf = DnsPacket.buildServFailResponse(dns) ?: return
-                try { output.write(IpPacket.buildUdpResponse(pkt, ihl, srcPort, sf)) } catch (_: Exception) {}
-            }
-        } else {
-            // ── Non-DNS UDP (e.g. QUIC on port 443/80) ───────────────────
-            // Forward via a protect()ed datagram socket so QUIC-based video
-            // streams and other UDP traffic continue to work.
-            val dstIp    = ByteBuffer.wrap(pkt, 16, 4).int
-            val dstAddr  = InetAddress.getByAddress(ByteBuffer.allocate(4).putInt(dstIp).array())
-            val payload  = pkt.copyOfRange(udpStart + 8, len)
-
-            try {
-                val sock = DatagramSocket().apply { this@AdBlockVpnService.protect(this) }
-                sock.soTimeout = 5000
-                sock.send(DatagramPacket(payload, payload.size, dstAddr, dstPort))
-                val rb = ByteArray(4096)
-                val rp = DatagramPacket(rb, rb.size)
-                sock.receive(rp)
-                val reply = rb.copyOf(rp.length)
-                output.write(IpPacket.buildUdpResponse(pkt, ihl, srcPort, reply))
-                sock.close()
-            } catch (_: Exception) { /* non-critical, drop it */ }
+        Stats.recordAllowed()
+        try {
+            dnsSocket.send(DatagramPacket(dns, dns.size, upstreamAddr, 53))
+            val rb = ByteArray(4096)
+            val rp = DatagramPacket(rb, rb.size)
+            dnsSocket.soTimeout = 3000
+            dnsSocket.receive(rp)
+            output.write(IpPacket.buildUdpResponse(pkt, ihl, srcPort, rb.copyOf(rp.length)))
+        } catch (e: Exception) {
+            val sf = DnsPacket.buildServFailResponse(dns) ?: return
+            try { output.write(IpPacket.buildUdpResponse(pkt, ihl, srcPort, sf)) } catch (_: Exception) {}
         }
     }
 
