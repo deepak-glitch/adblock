@@ -1,0 +1,21 @@
+# YouTube Ad Domains
+# IMPORTANT: YouTube serves ads and content from the same CDNs.
+# Full YouTube ad blocking at DNS level is NOT possible without breaking video.
+# These blocks target ad infrastructure that CAN be separated.
+# For full YouTube ad blocking, use a browser extension like uBlock Origin.
+
+# YouTube ad-specific subdomains
+ad.youtube.com
+ads.youtube.com
+survey.youtube.com
+www.youtube-nocookie.com
+
+# Google video ads (separate from content delivery)
+# yt3.ggpht.com is profile images — do NOT block it
+video-stats.l.google.com
+
+# YouTube tracking
+youtu.be is NOT a domain to block (it's the URL shortener for content)
+
+# Google IMA (main blocker for YouTube pre-roll) is in google-ads.txt:
+# imasdk.googleapis.com — ALREADY BLOCKED via google-ads.txt

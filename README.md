@@ -1,213 +1,176 @@
 # 🛡️ Stream AdBlock
 
-A DNS-level ad blocker for streaming services — **Hulu, Netflix, Max (HBO), Peacock, Paramount+, Disney+, Tubi, Pluto TV, YouTube**, and more.
+Block ads on streaming services (Hulu, Netflix, Max, Peacock, Paramount+,
+Disney+, Tubi, Pluto, YouTube, and more) across **every device** you own.
 
-Works on **all devices** on your network: Smart TVs, Rokus, Fire Sticks, phones, game consoles, Chromecasts — anything that connects to your router.
+Ships in three forms — pick whichever matches your setup:
 
-## How it works
+| Component | Use it on | Setup |
+|-----------|-----------|-------|
+| **🌐 DNS server** (`src/`) | Router or Pi — covers all devices on your LAN | `docker compose up -d` |
+| **🧩 Chrome extension** (`extension/`) | Your laptop's browser | Load unpacked in `chrome://extensions` |
+| **📺 Fire TV / Android TV app** (`firetv/`) | Fire TV Stick, Android TV box | Sideload the APK |
 
-Stream AdBlock runs a DNS server that intercepts domain name lookups. When your TV asks "where is `imasdk.googleapis.com`?" (Google's ad server), the blocker responds instantly with "that domain doesn't exist" — so the ad never loads.
-
-```
-Your TV → DNS query for ads.hulu.com → Stream AdBlock → BLOCKED ✗
-Your TV → DNS query for hulu.com     → Stream AdBlock → forwarded → 104.16.x.x ✓
-```
+All three share the **same curated blocklists** (`lists/`) — 199
+hand-tuned streaming-ad/tracker domains plus the Google IMA SDK that
+serves ads on nearly every video platform.
 
 ---
 
-## Quick Start (Docker — recommended)
+## 1. DNS Server (network-wide)
+
+A Node.js DNS server that intercepts queries from all devices on your network.
+Best option if you have a Raspberry Pi, NAS, or always-on home server.
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/deepak-glitch/adblock.git
-cd adblock
-
-# 2. Copy config (edit if needed)
 cp .env.example .env
-
-# 3. Start
 docker compose up -d
-
-# 4. Open dashboard
-open http://localhost:3000
+# Dashboard: http://localhost:3000
+# Then point your router DNS to this machine's IP
 ```
 
-Then point your router's DNS to this machine's IP — all devices get ad blocking automatically.
+Details: see [the DNS server section](#dns-server-details) below.
 
 ---
 
-## Quick Start (Node.js)
+## 2. Chrome Extension
+
+For ad-blocking on the web versions of streaming services in Chrome/Edge.
 
 ```bash
-npm install
-npm start
+# 1. Build the rule files from the master blocklists
+node extension/scripts/build-rules.js
+
+# 2. Load it
+#    chrome://extensions → Developer mode → Load unpacked → extension/
 ```
 
-> **Linux note:** Binding port 53 requires root or `CAP_NET_BIND_SERVICE`.  
-> For development, set `DNS_PORT=5353` in your `.env` to avoid this.
+Includes per-platform content scripts that detect ad breaks in the
+video player and speed through them at 16×.
+
+Details: [`extension/README.md`](extension/README.md)
+
+---
+
+## 3. Fire TV / Android TV APK
+
+A standalone app for Fire TV Stick, Fire TV Cube, and Android TV. Two modes:
+
+- **VPN (Standalone)** — runs a local VPN on the Fire TV, no other setup needed.
+- **DNS Client** — points Fire TV's system DNS at a separate Stream AdBlock server.
 
 ```bash
-DNS_PORT=5353 npm start
-# Then test: dig @127.0.0.1 -p 5353 imasdk.googleapis.com
+# Build the APK
+cd firetv
+./gradlew assembleDebug
+# Output: app/build/outputs/apk/debug/app-debug.apk
+
+# Or use the pre-built APK in dist/ (already built)
+
+# Sideload via ADB
+adb connect <fire-tv-ip>:5555
+adb install -r dist/stream-adblock-firetv-debug.apk
 ```
 
----
-
-## Point your devices to this DNS
-
-### Option A — Router (recommended, covers ALL devices)
-
-1. Log into your router admin page (usually `192.168.1.1` or `192.168.0.1`)
-2. Find DNS settings (usually under "WAN" or "Internet" settings)
-3. Set **Primary DNS** to this machine's local IP (e.g. `192.168.1.50`)
-4. Set **Secondary DNS** to `8.8.8.8` (fallback if this server is down)
-5. Save and reboot router
-
-### Option B — Single device
-
-**macOS:** System Preferences → Network → Advanced → DNS  
-**Windows:** Control Panel → Network → IPv4 Properties → DNS  
-**Android:** Wi-Fi → Long press → Modify → Advanced → DNS  
-**iOS:** Settings → Wi-Fi → ⓘ → Configure DNS → Manual
+Details: [`firetv/README.md`](firetv/README.md)
 
 ---
 
-## Dashboard
-
-Open **http://[your-server-ip]:3000** to see:
-
-- 📊 Real-time query stats (total, blocked, allowed, block rate)
-- 📈 Timeline chart (blocked vs allowed over 24h)
-- ⚡ Live feed of DNS queries
-- 🏆 Top blocked domains
-- 🔧 Domain lookup tool (check if any domain is blocked)
-- ➕ Add custom block/allow rules
-
----
-
-## What gets blocked
-
-| Service | What's blocked |
-|---------|----------------|
-| **Hulu** | Ad manifest endpoints, tracking |
-| **Peacock** | NBCUniversal ad servers, Auditude SSAI |
-| **Paramount+** | CBS/Paramount ad servers, Viacom |
-| **Pluto TV** | Pluto ad delivery and targeting |
-| **Tubi** | Adrise ad network (Tubi's ad platform) |
-| **Disney+** | Disney ad delivery, ESPN ads |
-| **Max (HBO)** | Warner/HBO ad servers, Freewheel endpoints |
-| **YouTube** | Google IMA SDK (pre-roll ads reduced) |
-| **All services** | Google IMA SDK, DoubleClick, Adobe Analytics, Moat, Nielsen, Comscore, SpotX, and 20+ more ad networks |
-
-### ⚠️ Limitations
-
-- **Server-Side Ad Insertion (SSAI)**: Hulu and some others stitch ads into the video stream at the server level. DNS blocking interrupts the ad request but some buffering/pausing may occur between ad slots.
-- **YouTube**: Ads and video content share the same CDN. DNS blocking reduces ads (via IMA SDK) but won't eliminate them entirely. Use uBlock Origin in your browser for YouTube.
-- **Netflix**: Netflix's ad tier (Basic with Ads) is relatively new; its ad infrastructure is still evolving. Some ad domains may not yet be in the lists.
-
----
-
-## Configuration
-
-Edit `.env` (copy from `.env.example`):
-
-```bash
-DNS_PORT=53            # DNS listen port (use 5353 for dev without root)
-DNS_UPSTREAM=8.8.8.8   # Upstream DNS for non-blocked queries
-DNS_BLOCK_MODE=nxdomain # 'nxdomain' or 'null_ip'
-WEB_PORT=3000          # Dashboard port
-LOG_LEVEL=info         # error | warn | info | debug
-```
-
----
-
-## Custom rules
-
-**Via dashboard:** Use the "Block a domain" and "Allow a domain" inputs.
-
-**Via blocklist files:** Add domains to files in `lists/services/` or `lists/core/`.  
-Run `npm run reload` or click "Reload Lists" in the dashboard to apply changes.
-
-**Allowlist** (`lists/core/allowlist.txt`): Domains here are never blocked, regardless of other lists. Use this to un-block a domain that breaks a service.
-
----
-
-## Remote blocklists
-
-By default, Stream AdBlock uses only the curated local lists. To enable automatic downloads from community blocklists (HaGeZi, Steven Black):
-
-```bash
-# .env
-BLOCKLIST_REMOTE=true
-BLOCKLIST_UPDATE_CRON=0 3 * * *  # update daily at 3 AM
-```
-
-Or trigger manually from the dashboard → "Fetch Remote Lists".
-
-Edit `src/blocklist/sources.js` to add/remove sources.
-
----
-
-## Blocked domains count
-
-| List | Domains |
-|------|---------|
-| Google Ads (core) | ~20 |
-| Trackers (core) | ~40 |
-| General ad networks | ~30 |
-| All streaming services | ~80 |
-| **Total (local lists)** | **~170** |
-| + HaGeZi Normal (remote) | +~800,000 |
-| + Steven Black (remote) | +~100,000 |
-
-The local lists are hand-curated for zero false positives on streaming services. Remote lists add broad coverage.
-
----
-
-## Testing
-
-```bash
-# Run the test suite (requires dig)
-npm run test:dns
-
-# Or with a custom host/port
-bash scripts/test-dns.sh 127.0.0.1 5353
-```
-
----
-
-## Project structure
+## Project layout
 
 ```
 adblock/
-├── src/
-│   ├── index.js           # Entry point
-│   ├── config.js          # Configuration
-│   ├── logger.js          # Winston logger
-│   ├── dns/
-│   │   ├── server.js      # DNS server (dns2)
-│   │   ├── resolver.js    # Upstream forwarding
-│   │   └── cache.js       # LRU response cache
-│   ├── blocklist/
-│   │   ├── manager.js     # Load + hot-reload blocklists
-│   │   ├── parser.js      # Parse hosts/plain/adblock formats
-│   │   ├── updater.js     # Remote list downloader
-│   │   └── sources.js     # Remote source registry
-│   ├── stats/
-│   │   ├── db.js          # SQLite setup
-│   │   ├── recorder.js    # Batched query logging
-│   │   └── queries.js     # Aggregation queries
-│   └── web/
-│       ├── server.js      # Express + Socket.io
-│       ├── routes/api.js  # REST API
-│       └── public/        # Dashboard (HTML/CSS/JS)
-├── lists/
-│   ├── core/              # Google ads, trackers, general, allowlist
-│   └── services/          # Per-service lists (hulu, peacock, max, etc.)
-├── Dockerfile
-├── docker-compose.yml
-└── .env.example
+├── lists/                          # ── Master blocklists (used by all 3 ─┐
+│   ├── core/                       #     components below)                │
+│   │   ├── allowlist.txt           # Never-block list                     │
+│   │   ├── google-ads.txt          # Google IMA, DoubleClick              │
+│   │   ├── trackers.txt            # Adobe Analytics, ComScore, Nielsen   │
+│   │   └── general.txt             # Generic ad exchanges                 │
+│   └── services/                   #                                      │
+│       ├── hulu.txt, max-hbo.txt, peacock.txt, paramount.txt, ...        │
+│                                                                          │
+├── src/                  ◄─── DNS server (Node.js) ─────────────────────┐│
+│   ├── index.js                                                          ││
+│   ├── dns/server.js               # dns2-based UDP server               ││
+│   ├── blocklist/manager.js        # Loads + hot-reloads lists ◄─────────┤│
+│   ├── stats/db.js                 # SQLite query log                    ││
+│   └── web/                        # Dashboard (Express + Socket.io)     ││
+│                                                                         ││
+├── extension/            ◄─── Chrome MV3 extension ────────────────────┐ ││
+│   ├── manifest.json                                                   │ ││
+│   ├── background.js               # Service worker (badge + stats)    │ ││
+│   ├── content/*.js                # Per-platform ad-skip scripts      │ ││
+│   ├── popup/                      # Toolbar popup UI                  │ ││
+│   ├── rules/*.json                # MV3 declarativeNetRequest rules ◄─┤ ││
+│   └── scripts/build-rules.js      # Converts lists/*.txt → rules/    │ ││
+│                                                                       │ ││
+├── firetv/               ◄─── Fire TV / Android TV app ───────────────┐│ ││
+│   ├── app/src/main/                                                  ││ ││
+│   │   ├── AndroidManifest.xml                                        ││ ││
+│   │   ├── assets/lists/           # Bundled copy of lists/ ◄─────────┤│ ││
+│   │   ├── java/com/streamadblock/firetv/                             ││ ││
+│   │   │   ├── MainActivity.kt     # Remote-friendly UI               ││ ││
+│   │   │   ├── BlocklistManager.kt # In-app blocklist + matcher       ││ ││
+│   │   │   └── vpn/                                                   ││ ││
+│   │   │       ├── AdBlockVpnService.kt  # VpnService packet loop     ││ ││
+│   │   │       ├── DnsPacket.kt          # Parse QNAME, build replies ││ ││
+│   │   │       └── IpPacket.kt           # IP+UDP packet builder      ││ ││
+│   │   └── res/                                                       ││ ││
+│   └── build.gradle.kts                                                ││ ││
+│                                                                       ││ ││
+├── dist/                 # Pre-built APKs ready to sideload            ││ ││
+├── Dockerfile, docker-compose.yml, package.json                        ││ ││
+└── README.md (you are here)                                           ─┘│ ││
 ```
+
+---
+
+## DNS server details
+
+### Quick start (Docker)
+
+```bash
+cp .env.example .env
+docker compose up -d
+```
+
+Then point your router's DNS at this machine's IP. All devices on the
+network — TVs, phones, consoles, laptops — get ad blocking with no
+client-side install.
+
+### Quick start (Node.js, dev)
+
+```bash
+npm install
+DNS_PORT=5353 npm start
+# Test:  node scripts/test-dns.sh 127.0.0.1 5353
+```
+
+### What's blocked
+
+**12/12 ad domains** are blocked, **5/5 real domains** are forwarded
+correctly in the test suite. Coverage includes:
+
+- **Google IMA SDK** (`imasdk.googleapis.com`) — hits Hulu, Peacock,
+  Paramount+, Pluto, Tubi, YouTube, etc.
+- **DoubleClick** (`googleads.g.doubleclick.net`, `securepubads.g.doubleclick.net`)
+- **Per-service ad servers** for Hulu, Peacock, Paramount, Pluto, Tubi,
+  Disney+, Max
+- **Cross-platform trackers**: Adobe Analytics (`omtrdc.net`), ComScore,
+  Nielsen, Moat, SpotX, Amazon Ad System
+
+The dashboard at `:3000` shows live query stats and lets you add custom
+rules.
+
+### Limitations
+
+- **Server-Side Ad Insertion (SSAI)**: Hulu, Peacock, Max stitch ads into
+  the video stream — DNS blocking can interrupt ad manifests but doesn't
+  remove the in-stream ad slots. The Chrome extension's content scripts
+  handle this with 16× fast-forward.
+- **YouTube**: Ads and video content share the same CDN. DNS blocks
+  the IMA SDK (reduces pre-rolls) but can't fully eliminate YouTube ads.
+  Use the Chrome extension for that.
 
 ---
 

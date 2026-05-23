@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stream AdBlock</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>🛡️ Stream AdBlock</h1>
+    <span id="status-pill" class="pill on">Active</span>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="value" id="today-count">0</div>
+      <div class="label">Today</div>
+    </div>
+    <div class="stat">
+      <div class="value" id="total-count">0</div>
+      <div class="label">All-time</div>
+    </div>
+    <div class="stat">
+      <div class="value" id="site-count">0</div>
+      <div class="label">This site</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Block categories</div>
+    <label class="toggle">
+      <span>Streaming service ads</span>
+      <input type="checkbox" id="toggle-streaming" data-ruleset="streaming_ads" checked />
+    </label>
+    <label class="toggle">
+      <span>Google Ads / DoubleClick</span>
+      <input type="checkbox" id="toggle-google" data-ruleset="google_ads" checked />
+    </label>
+    <label class="toggle">
+      <span>Trackers &amp; analytics</span>
+      <input type="checkbox" id="toggle-trackers" data-ruleset="trackers" checked />
+    </label>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Recently blocked</div>
+    <div id="recent" class="recent">
+      <div class="empty">No blocks yet on this session</div>
+    </div>
+  </div>
+
+  <footer>
+    <button id="reset-btn">Reset counters</button>
+    <span class="version">v1.0.0</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

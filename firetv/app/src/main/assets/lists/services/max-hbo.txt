@@ -1,0 +1,25 @@
+# Max (HBO Max / Warner Bros. Discovery) Ad Domains
+# Note: Max with ads uses Freewheel for ad serving
+
+# Max ad infrastructure
+ads.max.com
+ads.hbomax.com
+adserver.max.com
+tracking.max.com
+analytics.hbomax.com
+log.hbomax.com
+bam.max.com
+
+# Warner Bros. ad network
+ads.warnermediacdn.com
+warnermedia.demdex.net
+
+# Freewheel integration (specific to Max)
+# General freewheel.tv is allowlisted, these subdomains are ad-specific
+max.fwmrm.net
+wbd.fwmrm.net
+hbo.fwmrm.net
+
+# Max tracking
+smetrics.max.com
+pixel.max.com

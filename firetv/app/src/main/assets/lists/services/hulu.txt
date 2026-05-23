@@ -1,0 +1,20 @@
+# Hulu Ad Domains
+# Hulu uses server-side ad insertion (SSAI) via Darwin/Uplynk platform.
+# These DNS blocks prevent ad manifests and tracking from loading.
+
+# Hulu/Disney ad delivery (SSAI endpoint)
+ads-e-darwin.hulustream.com
+ads-darwin.hulustream.com
+ads.hulustream.com
+ads-e-darwin-lb.hulustream.com
+darwin.huluads.com
+
+# Hulu tracking and analytics
+tracking.hulu.com
+log.hulu.com
+smetrics.hulu.com
+pixel.hulu.com
+
+# Hulu ad tech partners
+abcnews-adtag.hulu.com
+vod-adtag.hulu.com

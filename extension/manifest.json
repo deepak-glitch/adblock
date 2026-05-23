@@ -1,0 +1,107 @@
+{
+  "manifest_version": 3,
+  "name": "Stream AdBlock",
+  "version": "1.0.0",
+  "description": "Blocks ads on Hulu, Max, Peacock, Paramount+, Pluto, Tubi, Disney+, YouTube and more.",
+
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "*://*.hulu.com/*",
+    "*://*.max.com/*",
+    "*://*.hbomax.com/*",
+    "*://*.peacocktv.com/*",
+    "*://*.paramountplus.com/*",
+    "*://*.pluto.tv/*",
+    "*://*.tubi.tv/*",
+    "*://*.tubitv.com/*",
+    "*://*.disneyplus.com/*",
+    "*://*.youtube.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "streaming_ads",
+        "enabled": true,
+        "path": "rules/streaming_rules.json"
+      },
+      {
+        "id": "google_ads",
+        "enabled": true,
+        "path": "rules/google_rules.json"
+      },
+      {
+        "id": "trackers",
+        "enabled": true,
+        "path": "rules/tracker_rules.json"
+      }
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.hulu.com/*"],
+      "js": ["content/hulu.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.max.com/*", "*://*.hbomax.com/*"],
+      "js": ["content/max.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.peacocktv.com/*"],
+      "js": ["content/peacock.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.paramountplus.com/*"],
+      "js": ["content/paramount.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.pluto.tv/*"],
+      "js": ["content/pluto.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.tubi.tv/*", "*://*.tubitv.com/*"],
+      "js": ["content/tubi.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content/youtube.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

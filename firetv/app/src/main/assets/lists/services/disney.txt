@@ -1,0 +1,21 @@
+# Disney+ / ABC / ESPN Ad Domains
+
+# Disney+ ad delivery
+ads.disneyplus.com
+tracking.disneyplus.com
+analytics.disneyplus.com
+log.disneyplus.com
+
+# ESPN ads (bundled with Disney+)
+ads.espn.com
+ads-e.espncdn.com
+analytics.espn.com
+
+# Disney audience data
+disney.demdex.net
+espn.demdex.net
+
+# Disney tracking pixels
+smetrics.disneyplus.com
+smetrics.go.com
+metric.disneyplus.com

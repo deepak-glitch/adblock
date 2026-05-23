@@ -1,0 +1,24 @@
+# Peacock (NBCUniversal) Ad Domains
+
+# NBCUniversal ad delivery
+ads.nbcuni.com
+ads-delivery.nbcuni.com
+adserver.nbcuni.com
+tracking.nbcuni.com
+analytics.nbcuni.com
+
+# Auditude (Adobe SSAI used by Peacock)
+manifest.auditude.com
+ep.auditude.com
+tracker.auditude.com
+
+# Comcast/Peacock ad gateway
+pgateway.comcast.net
+
+# Peacock-specific tracking
+log.peacocktv.com
+metrics.peacocktv.com
+pixel.peacocktv.com
+
+# NBCUniversal tag management
+tags.nbcuni.com

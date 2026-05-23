@@ -6,3 +6,17 @@ lists/remote/*.txt
 *.db-shm
 *.db-wal
 .DS_Store
+
+# Android build artifacts (keep dist/ which has the prebuilt APKs)
+firetv/.gradle/
+firetv/build/
+firetv/app/build/
+firetv/local.properties
+firetv/.idea/
+firetv/captures/
+firetv/.cxx/
+firetv/*.iml
+firetv/app/*.iml
+
+# Chrome extension build artifacts (rules/ are committed since they're generated assets)
+extension/dist/

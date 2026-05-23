@@ -1,0 +1,18 @@
+# Tubi Ad Domains (Fox/Adrise)
+# Tubi is AVOD (free with ads), heavily ad-supported.
+# IMPORTANT: uapi.adrise.tv is in the allowlist and must NOT be blocked.
+
+# Tubi/Adrise ad infrastructure
+ads.adrise.tv
+tracking.adrise.tv
+log.adrise.tv
+ads-cdn.adrise.tv
+sync.adrise.tv
+metrics.adrise.tv
+pixel.adrise.tv
+analytics.adrise.tv
+
+# Fox ad network (Tubi parent)
+ads.foxtv.com
+ads.fox.com
+analytics.fox.com
