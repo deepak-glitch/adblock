@@ -1,0 +1,27 @@
+# Paramount+ / Pluto TV (Paramount Global) Ad Domains
+
+# Paramount ad servers
+ads.paramount.com
+ads.cbs.com
+mab.cbsi.com
+ad.cbsig.net
+
+# Viacom/MTV ad delivery
+ads.mtvnservices.com
+delivery.mtvnservices.com
+media.mtvnservices.com
+
+# Paramount audience data
+cbs.demdex.net
+paramount.demdex.net
+cbsi.demdex.net
+
+# Tealium tag management (Paramount uses this)
+tags.tiqcdn.com
+collect.tiqcdn.com
+
+# Paramount tracking
+smetrics.cbs.com
+smetrics.paramount.com
+smetrics.cbsnews.com
+pixel.paramount.com

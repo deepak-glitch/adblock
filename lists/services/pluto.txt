@@ -1,0 +1,14 @@
+# Pluto TV Ad Domains (Paramount/SkyShowtime)
+
+# Pluto TV ad delivery
+ads.pluto.tv
+adserver.pluto.tv
+tracking.pluto.tv
+analytics.pluto.tv
+creativelibrary.pluto.tv
+log.pluto.tv
+metrics.pluto.tv
+sync.pluto.tv
+
+# Pluto audience data
+pluto.demdex.net

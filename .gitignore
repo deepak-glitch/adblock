@@ -1,0 +1,8 @@
+node_modules/
+data/
+lists/remote/*.txt
+.env
+*.db
+*.db-shm
+*.db-wal
+.DS_Store

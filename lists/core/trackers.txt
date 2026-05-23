@@ -1,0 +1,83 @@
+# Cross-Platform Analytics & Tracking
+# These domains collect data that powers ad targeting across streaming services.
+
+# Adobe Analytics / Omniture (used by Hulu, Disney+, CBS, NBC, etc.)
+omtrdc.net
+2o7.net
+sc.omtrdc.net
+hulu.d2.sc.omtrdc.net
+disney.d2.sc.omtrdc.net
+nbcuni.d2.sc.omtrdc.net
+
+# Adobe Audience Manager (DMP for ad targeting)
+demdex.net
+dpm.demdex.net
+cm.everesttech.net
+
+# Nielsen measurement
+imrworldwide.com
+secure-us.imrworldwide.com
+cdn-gl.imrworldwide.com
+
+# ComScore
+scorecardresearch.com
+beacon.scorecardresearch.com
+b.scorecardresearch.com
+
+# Moat (Oracle) — viewability/fraud measurement used by many streamers
+moatads.com
+sync.moatads.com
+z.moatads.com
+
+# IAS (Integral Ad Science) — brand safety/viewability
+pixel.adsafeprotected.com
+adsafeprotected.com
+fw.adsafeprotected.com
+
+# New Relic browser monitoring (used widely by streaming services)
+bam.nr-data.net
+js-agent.newrelic.com
+
+# Segment (data pipeline)
+api.segment.io
+cdn.segment.com
+segment.io
+
+# Amplitude analytics
+api.amplitude.com
+cdn.amplitude.com
+api2.amplitude.com
+
+# Criteo retargeting
+rtax.criteo.com
+static.criteo.net
+widget.criteo.com
+gum.criteo.com
+
+# SpotX (video ad exchange, used by Pluto TV, Peacock, etc.)
+srv.spotxchange.com
+search.spotxchange.com
+js.spotx.tv
+
+# Amazon advertising (DSP)
+s.amazon-adsystem.com
+aax.amazon-adsystem.com
+c.amazon-adsystem.com
+aps.amazon.com
+
+# Facebook Pixel
+connect.facebook.net
+pixel.facebook.com
+
+# Chartbeat (media analytics)
+static.chartbeat.com
+ping.chartbeat.net
+
+# Optimizely
+cdn.optimizely.com
+logx.optimizely.com
+
+# Branch (mobile attribution)
+app.link
+fnrd.net
+branch.io

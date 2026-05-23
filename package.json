@@ -1,0 +1,29 @@
+{
+  "name": "stream-adblock",
+  "version": "1.0.0",
+  "description": "DNS-level ad blocker for streaming services (Hulu, Netflix, Max, Peacock, etc.)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test:dns": "bash scripts/test-dns.sh"
+  },
+  "keywords": [
+    "adblock",
+    "dns",
+    "streaming",
+    "hulu",
+    "netflix",
+    "privacy"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^12.10.0",
+    "dns2": "^2.1.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.1.0",
+    "node-cron": "^4.2.1",
+    "socket.io": "^4.8.1",
+    "winston": "^3.19.0"
+  }
+}

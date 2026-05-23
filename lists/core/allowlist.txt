@@ -1,0 +1,47 @@
+# Allowlist — These domains must NEVER be blocked.
+# They look like ad/analytics domains but are critical for streaming functionality.
+# Domains here always bypass the blocklist.
+
+# Tubi content API — blocking this breaks the entire Tubi app
+uapi.adrise.tv
+
+# Netflix CDN and infrastructure — blocking breaks streaming
+nflxvideo.net
+nflxext.com
+nflximg.net
+nflximg.com
+nflxso.net
+nflx.net
+
+# Disney+/Bamtech content delivery
+bamgrid.com
+dssott.com
+bamsdk.s3.amazonaws.com
+
+# Apple TV+
+itunesconnect.apple.com
+buy.itunes.apple.com
+
+# General CDNs — NEVER block these
+akamaized.net
+akamaihd.net
+fastly.net
+cloudfront.net
+edgecastcdn.net
+cdninstagram.com
+llnwd.net
+llnwi.net
+
+# Google APIs needed for streaming
+apis.google.com
+www.googleapis.com
+oauth2.googleapis.com
+
+# Freewheel main domain (content delivery, NOT ads)
+freewheel.tv
+
+# YouTube — video content CDN (ads use same CDN so can't fully block)
+googlevideo.com
+ytimg.com
+yt3.ggpht.com
+i.ytimg.com

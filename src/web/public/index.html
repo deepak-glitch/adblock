@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stream AdBlock — Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────── -->
+<header class="header">
+  <h1>
+    <span class="shield">🛡️</span>
+    Stream AdBlock
+  </h1>
+  <span class="status-badge online">
+    <span class="dot live" id="live-dot"></span>
+    Live
+  </span>
+</header>
+
+<!-- ── Stat Cards ──────────────────────────────────────────────────── -->
+<div class="stats-grid">
+  <div class="stat-card total">
+    <div class="value" id="stat-total">—</div>
+    <div class="label">Queries (24h)</div>
+  </div>
+  <div class="stat-card blocked">
+    <div class="value" id="stat-blocked">—</div>
+    <div class="label">Blocked (24h)</div>
+  </div>
+  <div class="stat-card allowed">
+    <div class="value" id="stat-allowed">—</div>
+    <div class="label">Allowed (24h)</div>
+  </div>
+  <div class="stat-card percent">
+    <div class="value" id="stat-percent">—</div>
+    <div class="label">Block Rate</div>
+  </div>
+  <div class="stat-card domains">
+    <div class="value" id="stat-domains">—</div>
+    <div class="label">Domains in Blocklist</div>
+  </div>
+  <div class="stat-card">
+    <div class="value" id="stat-latency">—</div>
+    <div class="label">Avg DNS Latency</div>
+  </div>
+</div>
+
+<!-- ── Main: Chart + Live Feed ─────────────────────────────────────── -->
+<div class="main">
+  <!-- Left: Timeline chart -->
+  <div class="panel">
+    <div class="panel-header">Query Timeline (24h)</div>
+    <div class="panel-body">
+      <div class="chart-container">
+        <canvas id="timeline-chart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Live feed -->
+  <div class="panel">
+    <div class="panel-header">
+      Live Feed
+      <span style="font-size:11px;color:var(--muted)">
+        <span class="dot live"></span> real-time
+      </span>
+    </div>
+    <div class="live-feed" id="live-feed"></div>
+  </div>
+</div>
+
+<!-- ── Bottom Row: Tables ───────────────────────────────────────────── -->
+<div class="bottom-row">
+  <!-- Top blocked domains -->
+  <div class="panel">
+    <div class="panel-header">Top Blocked Domains (24h)</div>
+    <div class="panel-body" style="padding:0">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th style="text-align:right">Blocks</th>
+          </tr>
+        </thead>
+        <tbody id="top-blocked-body">
+          <tr><td colspan="2" style="color:var(--muted);text-align:center;padding:20px">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Top clients -->
+  <div class="panel">
+    <div class="panel-header">Top Clients (24h)</div>
+    <div class="panel-body" style="padding:0">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Device IP</th>
+            <th style="text-align:right">Total</th>
+            <th style="text-align:right">Blocked</th>
+          </tr>
+        </thead>
+        <tbody id="top-clients-body">
+          <tr><td colspan="3" style="color:var(--muted);text-align:center;padding:20px">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── Tools Row ────────────────────────────────────────────────────── -->
+<div class="bottom-row" style="padding-top:0">
+  <!-- Domain lookup + custom rules -->
+  <div class="panel">
+    <div class="panel-header">Domain Lookup</div>
+    <div class="panel-body">
+      <form id="check-form" class="tool-row">
+        <input class="tool-input" id="check-input" placeholder="ads.hulu.com" type="text" autocomplete="off" />
+        <button class="btn" type="submit">Check</button>
+      </form>
+      <div class="result-box" id="check-result">Enter a domain to check if it's blocked</div>
+    </div>
+  </div>
+
+  <!-- Blocklist management -->
+  <div class="panel">
+    <div class="panel-header">Manage Blocklists</div>
+    <div class="panel-body">
+      <div class="tool-row" style="margin-bottom:16px">
+        <button class="btn secondary" id="btn-reload">↺ Reload Lists</button>
+        <button class="btn secondary" id="btn-update">⬇ Fetch Remote Lists</button>
+      </div>
+
+      <form id="block-form" class="tool-row">
+        <input class="tool-input" id="block-input" placeholder="Block a domain..." type="text" />
+        <button class="btn danger" type="submit">Block</button>
+      </form>
+      <div class="result-box" id="block-result" style="margin-bottom:10px"></div>
+
+      <form id="allow-form" class="tool-row">
+        <input class="tool-input" id="allow-input" placeholder="Allow a domain..." type="text" />
+        <button class="btn success" type="submit">Allow</button>
+      </form>
+      <div class="result-box" id="allow-result"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

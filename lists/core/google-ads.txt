@@ -1,0 +1,34 @@
+# Google Ad Infrastructure
+# These domains are used by nearly ALL streaming services for ad delivery.
+# Blocking these is the highest-impact single action you can take.
+
+# Google Interactive Media Ads (IMA) SDK
+# Used by Hulu, Peacock, Paramount+, Tubi, Pluto TV, YouTube, and many others
+imasdk.googleapis.com
+ima3.googleapis.com
+
+# Google DoubleClick ad serving
+googleads.g.doubleclick.net
+ad.doubleclick.net
+ads.doubleclick.net
+stats.g.doubleclick.net
+cm.g.doubleclick.net
+securepubads.g.doubleclick.net
+pubads.g.doubleclick.net
+fls.doubleclick.net
+ade.googlesyndication.com
+
+# Google Ad Services
+adservice.google.com
+pagead2.googlesyndication.com
+tpc.googlesyndication.com
+partner.googleadservices.com
+www.googleadservices.com
+csi.gstatic.com
+
+# Google syndication
+s0.2mdn.net
+s1.2mdn.net
+
+# AdSense
+fundingchoicesmessages.google.com

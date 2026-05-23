@@ -1,0 +1,70 @@
+# General Ad Networks
+# Ad networks and exchanges not specific to one streaming service.
+
+# Freewheel (Comcast/NBC ad server — used by Peacock, FX, NBC, CBS, Hulu)
+# Note: Only block these subdomains, NOT freewheel.tv (content delivery)
+ads.freewheel.tv
+cdn.freewheel.tv
+23media.freewheel.tv
+fwmrm.net
+px.fwmrm.net
+cdn2.fwmrm.net
+
+# Tremor Video / Unruly
+cdn.tremormedia.com
+tremorvideo.com
+
+# The Trade Desk
+insight.adsrvr.org
+js.adsrvr.org
+match.adsrvr.org
+
+# Index Exchange
+casalemedia.com
+simage2.casalemedia.com
+js-sec.indexww.com
+
+# OpenX
+delivery.opsx.net
+u.openx.net
+ox-d.openx.net
+
+# AppNexus / Xandr (Microsoft)
+secure.adnxs.com
+ib.adnxs.com
+cdn.adnxs.com
+
+# Rubicon Project / Magnite
+fastlane.rubiconproject.com
+prebid-server.rubiconproject.com
+
+# PubMatic
+ads.pubmatic.com
+image6.pubmatic.com
+simage2.pubmatic.com
+
+# LiveRamp (identity resolution for ad targeting)
+idsync.rlcdn.com
+api.rlcdn.com
+p.rlcdn.com
+
+# Liveramp / Acxiom
+eu.acxiom-online.com
+us.acxiom-online.com
+
+# Conviva (streaming quality analytics used by Disney+, Peacock)
+conviva.com
+stat.conviva.com
+cws.conviva.com
+pulse.conviva.com
+
+# Yieldmo
+ads.yieldmo.com
+
+# Sharethrough
+native.sharethrough.com
+s.sharethrough.com
+
+# 33Across
+sac.33across.com
+de.tynt.com

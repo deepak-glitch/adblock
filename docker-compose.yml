@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  adblock:
+    build: .
+    container_name: stream-adblock
+    restart: unless-stopped
+
+    # Linux: host networking required for UDP port 53 + correct client IP tracking
+    # macOS/Windows Docker Desktop: comment out network_mode and use the ports block below
+    network_mode: host
+
+    # --- macOS / Windows: replace network_mode: host with this ---
+    # ports:
+    #   - "53:53/udp"
+    #   - "3000:3000/tcp"
+
+    volumes:
+      # Persist the SQLite query log across container restarts
+      - ./data:/app/data
+      # Persist downloaded remote blocklists
+      - ./lists/remote:/app/lists/remote
+      # Mount .env for runtime config (optional)
+      - ./.env:/app/.env:ro
+
+    environment:
+      - NODE_ENV=production
+
+    cap_add:
+      - NET_BIND_SERVICE   # Required to bind port 53 without running as full root
+
+    healthcheck:
+      test: ["CMD", "node", "-e",
+        "const d=require('dgram').createSocket('udp4');d.send(Buffer.alloc(12),53,'127.0.0.1',e=>{d.close();process.exit(e?1:0)})"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
