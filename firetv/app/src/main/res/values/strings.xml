@@ -36,5 +36,8 @@
     <string name="notif_running_text">Blocking %1$d ad domains</string>
 
     <!-- Footer -->
-    <string name="footer">© 2026 Stream AdBlock · DNS-level ad blocking</string>
+    <string name="footer">© 2026 Stream AdBlock · Targeting Hulu &amp; Max</string>
+
+    <!-- Primary focus -->
+    <string name="primary_targets">Primary: Hulu &amp; Max</string>
 </resources>

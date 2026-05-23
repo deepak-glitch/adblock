@@ -1,19 +1,25 @@
 # 🛡️ Stream AdBlock
 
-Block ads on streaming services (Hulu, Netflix, Max, Peacock, Paramount+,
-Disney+, Tubi, Pluto, YouTube, and more) across **every device** you own.
+Block ads on **Hulu** and **Max** (HBO) — the two most heavily-advertised
+streaming services — plus broader coverage for Peacock, Paramount+,
+Disney+, Tubi, Pluto, YouTube, and Netflix, across **every device** you own.
+
+> **Primary targets:** Hulu and Max get the most aggressive blocking —
+> 25 Hulu-specific domains (Darwin SSAI, Uplynk ads, tracking pixels,
+> telemetry) and 29 Max-specific domains (Freewheel SSAI, WBD analytics,
+> Adobe targeting). Other services get solid baseline coverage.
 
 Ships in three forms — pick whichever matches your setup:
 
 | Component | Use it on | Setup |
 |-----------|-----------|-------|
-| **🌐 DNS server** (`src/`) | Router or Pi — covers all devices on your LAN | `docker compose up -d` |
-| **🧩 Chrome extension** (`extension/`) | Your laptop's browser | Load unpacked in `chrome://extensions` |
 | **📺 Fire TV / Android TV app** (`firetv/`) | Fire TV Stick, Android TV box | Sideload the APK |
+| **🧩 Chrome extension** (`extension/`) | Your laptop's browser — includes 16× fast-forward for Hulu/Max SSAI mid-rolls | Load unpacked in `chrome://extensions` |
+| **🌐 DNS server** (`src/`) | Router or Pi — covers all devices on your LAN | `docker compose up -d` |
 
-All three share the **same curated blocklists** (`lists/`) — 199
-hand-tuned streaming-ad/tracker domains plus the Google IMA SDK that
-serves ads on nearly every video platform.
+All three share the **same curated blocklists** (`lists/`) — **301
+hand-tuned domains** including Hulu/Max SSAI orchestration endpoints,
+the Google IMA SDK, Freewheel ad decisions, and cross-platform trackers.
 
 ---
 
