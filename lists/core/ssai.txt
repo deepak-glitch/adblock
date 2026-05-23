@@ -1,0 +1,88 @@
+# SSAI (Server-Side Ad Insertion) Orchestration Endpoints
+# SSAI works by stitching ads directly into the video stream on the server side.
+# These are the SESSION INITIALIZATION endpoints — blocking them prevents the
+# ad stitching session from being set up, so the player receives the clean stream.
+# NOTE: We cannot block ad *segment* CDNs (same CDN as real content).
+
+# ─── Google Dynamic Ad Insertion (DAI) ───────────────────────────────────────
+# Used by: YouTube TV, some Hulu/Disney SSAI
+dai.google.com
+dai.googlevideo.com
+
+# ─── Freewheel Manifest Rewrite & Decision Server ────────────────────────────
+# Used by: Max/HBO, Peacock, CBS, NBC, Paramount+, Tubi
+# mrad = Manifest Rewrite And Decision — this is THE Freewheel SSAI core
+mrad.fwmrm.net
+g.fwmrm.net
+cdn.fwmrm.net
+
+# Additional Freewheel SSAI client subdomains
+global.fwmrm.net
+cbs.fwmrm.net
+nbc.fwmrm.net
+peacock.fwmrm.net
+paramount.fwmrm.net
+abc.fwmrm.net
+espn.fwmrm.net
+fox.fwmrm.net
+
+# ─── Yospace SSAI ─────────────────────────────────────────────────────────────
+# Used by: various US/EU streamers, some Fire TV channels
+csm-e.yospace.com
+csm.yospace.com
+l.yospace.com
+cf.yospace.com
+
+# ─── Brightcove SSAI ──────────────────────────────────────────────────────────
+ssai.brightcove.com
+ssai-cache.brightcove.com
+
+# ─── Uplynk / Edgio (formerly Verizon Media) SSAI ────────────────────────────
+# Used by: Hulu (legacy), Pluto TV, some Disney properties
+ads.uplynk.com
+token.uplynk.com
+
+# ─── SpringServe (video SSAI platform) ────────────────────────────────────────
+ads.springserve.com
+ssl.springserve.com
+cdn.springserve.com
+
+# ─── Innovid (CTV / OTT SSAI) ────────────────────────────────────────────────
+# Used by: many Fire TV/CTV apps
+a.innovid.com
+cdn.innovid.com
+sync.innovid.com
+pixel.innovid.com
+
+# ─── Wurl (FAST channel SSAI) ─────────────────────────────────────────────────
+ads.wurl.com
+tracker.wurl.com
+
+# ─── Amazon Publisher Services (APS) SSAI ─────────────────────────────────────
+# Used by: Fire TV native apps (Pluto, Tubi, etc.)
+aax-us-east.amazon-adsystem.com
+aax-us-west.amazon-adsystem.com
+aax-eu.amazon-adsystem.com
+mads.amazon-adsystem.com
+z-na.amazon-adsystem.com
+z-eu.amazon-adsystem.com
+
+# ─── Unruly (News Corp video ads) ────────────────────────────────────────────
+video.unruly.co
+targeting.unruly.co
+rtb.unruly.co
+
+# ─── Extreme Reach (ad delivery for TV/streaming) ────────────────────────────
+p.extremereach.com
+ads.extremereach.com
+
+# ─── JW Player / Connatix SSAI ────────────────────────────────────────────────
+cdn.jwplayer.com
+segment.jwplayer.com
+imasdk.jwplayer.com
+cdn.connatix.com
+capi.connatix.com
+
+# ─── NBCU / Peacock SSAI (additional) ────────────────────────────────────────
+ssai.nbcuni.com
+dai.nbcuni.com

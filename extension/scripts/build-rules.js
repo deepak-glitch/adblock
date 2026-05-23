@@ -74,10 +74,11 @@ function build() {
   const googleDomains = loadDomains(path.join(LISTS_DIR, 'core', 'google-ads.txt'));
   const googleRules = domainsToRules(googleDomains, 100000, allowlist);
 
-  // ── Trackers + general ────────────────────────────────────────────────
+  // ── Trackers + general + SSAI orchestration ───────────────────────────
   const trackerDomains = new Set();
   loadDomains(path.join(LISTS_DIR, 'core', 'trackers.txt')).forEach(d => trackerDomains.add(d));
   loadDomains(path.join(LISTS_DIR, 'core', 'general.txt')).forEach(d => trackerDomains.add(d));
+  loadDomains(path.join(LISTS_DIR, 'core', 'ssai.txt')).forEach(d => trackerDomains.add(d));
   const trackerRules = domainsToRules(trackerDomains, 200000, allowlist);
 
   // ── Write outputs ─────────────────────────────────────────────────────
