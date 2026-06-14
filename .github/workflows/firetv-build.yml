@@ -14,6 +14,10 @@ on:
       - 'firetv/**'
   workflow_dispatch:   # lets you trigger a build manually from the Actions tab
 
+# Allow the workflow to publish the built APK as a GitHub Release.
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,3 +50,18 @@ jobs:
           name: stream-adblock-firetv-debug
           path: firetv/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      # Publish the APK to a fixed "firetv-latest" release so there's a stable,
+      # public, login-free URL you can paste into the Downloader app on Fire TV.
+      - name: Publish to rolling release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: firetv-latest
+          name: Fire TV app — latest build
+          body: |
+            Auto-built debug APK of the Stream AdBlock Fire TV app.
+            Sideload on a Fire OS device via the Downloader app using this URL:
+            https://github.com/deepak-glitch/adblock/releases/download/firetv-latest/app-debug.apk
+          files: firetv/app/build/outputs/apk/debug/app-debug.apk
+          make_latest: true
