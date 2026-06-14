@@ -31,6 +31,10 @@
     <!-- Auto-start -->
     <string name="auto_start">Start automatically on boot</string>
 
+    <!-- Deep blocking (experimental) -->
+    <string name="deep_blocking">Deep Blocking (experimental)</string>
+    <string name="deep_blocking_desc">Adds an HTTPS/SNI layer that blocks ad servers even when apps bypass DNS. Heavier — may affect streaming, and does NOT remove in-stream (SSAI) ads. Restart blocking to apply.</string>
+
     <!-- Filter lists -->
     <string name="filter_lists_label">Filter Lists</string>
     <string name="update_lists">⟳ Update Filter Lists</string>

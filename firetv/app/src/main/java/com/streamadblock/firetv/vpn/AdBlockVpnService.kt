@@ -53,6 +53,7 @@ class AdBlockVpnService : VpnService() {
     }
 
     private var tunInterface: ParcelFileDescriptor? = null
+    @Volatile private var tcpProxy: TcpProxy? = null
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     // ── Service lifecycle ─────────────────────────────────────────────────
@@ -70,15 +71,25 @@ class AdBlockVpnService : VpnService() {
         BlocklistManager.loadAll(this)
         Stats.load(this)
 
+        val deep = Settings.isDeepBlocking(this)
+
         val builder = Builder()
             .setSession(getString(R.string.app_name))
             .addAddress(VPN_ADDRESS, VPN_PREFIX)
             .addDnsServer(VPN_DNS)
-            // Route ONLY the fake DNS server IP through the tun.
-            // All other traffic (TCP, UDP video streams, etc.) flows
-            // through the real network — nothing is intercepted or broken.
-            .addRoute(VPN_DNS, 32)
             .setMtu(1500)
+
+        if (deep) {
+            // Deep Blocking: route ALL traffic so the TCP/SNI proxy can inspect
+            // HTTPS connections (second layer — catches ad servers that bypass
+            // DNS via DoH or hardcoded IPs). Heavier; may affect streaming.
+            builder.addRoute("0.0.0.0", 0)
+        } else {
+            // DNS-only (default): route ONLY the fake DNS server IP through the
+            // tun. All other traffic (TCP, UDP video streams) flows through the
+            // real network — nothing is intercepted or broken.
+            builder.addRoute(VPN_DNS, 32)
+        }
 
         // Exclude ourselves — prevents recursive routing of our upstream sockets
         try { builder.addDisallowedApplication(packageName) } catch (_: Exception) {}
@@ -90,7 +101,7 @@ class AdBlockVpnService : VpnService() {
 
         isRunning = true
         startForeground(NOTIF_ID, buildNotification())
-        Log.i(TAG, "VPN started — blocklist=${BlocklistManager.blockedCount()} domains")
+        Log.i(TAG, "VPN started — deep=$deep, blocklist=${BlocklistManager.blockedCount()} domains")
 
         scope.launch { tunLoop() }
     }
@@ -98,6 +109,8 @@ class AdBlockVpnService : VpnService() {
     private fun stopVpn() {
         if (!isRunning) return
         isRunning = false
+        try { tcpProxy?.cleanup() } catch (_: Exception) {}
+        tcpProxy = null
         try { tunInterface?.close() } catch (_: Exception) {}
         tunInterface = null
         scope.coroutineContext.cancelChildren()
@@ -115,6 +128,12 @@ class AdBlockVpnService : VpnService() {
         val input  = FileInputStream(tun.fileDescriptor)
         val output = FileOutputStream(tun.fileDescriptor)
         val buf    = ByteArray(32768)
+
+        // Deep Blocking: stand up the TCP/SNI proxy for this session.
+        if (Settings.isDeepBlocking(this)) {
+            tcpProxy = TcpProxy(this, output, scope)
+            Log.i(TAG, "Deep Blocking on — TCP/SNI proxy active")
+        }
 
         val upstreamHost = Settings.getUpstreamDns(this)
         val upstreamAddr = InetAddress.getByName(upstreamHost)
@@ -144,19 +163,30 @@ class AdBlockVpnService : VpnService() {
         dnsSocket: DatagramSocket,
         upstreamAddr: InetAddress
     ) {
-        // Only IPv4 + UDP + dst port 53
+        // IPv4 only
         if (pkt.size < 28) return
         val version = (pkt[0].toInt() ushr 4) and 0x0F
         if (version != 4) return
 
         val ihl = (pkt[0].toInt() and 0x0F) * 4
         if (ihl < 20 || ihl > len) return
-        if (pkt[9].toInt() and 0xFF != 17) return  // UDP only
+        val proto = pkt[9].toInt() and 0xFF
+
+        // TCP → hand to the SNI proxy (only present in Deep Blocking mode;
+        // null otherwise, so in DNS-only mode no TCP is ever routed here).
+        if (proto == 6) {
+            tcpProxy?.handlePacket(pkt, ihl)
+            return
+        }
+        if (proto != 17) return  // only UDP past this point
 
         val udpStart = ihl
         if (udpStart + 8 > len) return
         val srcPort = ((pkt[udpStart].toInt() and 0xFF) shl 8) or (pkt[udpStart + 1].toInt() and 0xFF)
         val dstPort = ((pkt[udpStart + 2].toInt() and 0xFF) shl 8) or (pkt[udpStart + 3].toInt() and 0xFF)
+        // Only DNS (UDP 53) is processed. In Deep Blocking we route all traffic,
+        // so non-DNS UDP (notably QUIC on 443) is dropped here — apps then fall
+        // back to TCP 443, where the SNI proxy can filter by hostname.
         if (dstPort != 53) return
 
         val dnsStart = udpStart + 8

@@ -50,6 +50,16 @@ class MainActivity : AppCompatActivity() {
         }
         binding.autoStartToggle.isChecked = Settings.isAutoStart(this)
 
+        binding.deepBlockingToggle.isChecked = Settings.isDeepBlocking(this)
+        binding.deepBlockingToggle.setOnCheckedChangeListener { _, checked ->
+            Settings.setDeepBlocking(this, checked)
+            // Re-establish the tunnel so the new routing takes effect now.
+            if (AdBlockVpnService.isRunning) {
+                stopVpnService()
+                startVpnService()
+            }
+        }
+
         binding.autoUpdateToggle.isChecked = Settings.isAutoUpdate(this)
         binding.autoUpdateToggle.setOnCheckedChangeListener { _, checked ->
             Settings.setAutoUpdate(this, checked)

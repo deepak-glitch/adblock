@@ -13,6 +13,7 @@ object Settings {
     private const val K_AUTOSTART = "auto_start"
     private const val K_AUTO_UPDATE = "auto_update_lists"
     private const val K_LAST_LIST_UPDATE = "last_list_update"
+    private const val K_DEEP_BLOCKING = "deep_blocking"
 
     const val MODE_VPN = "vpn"
     const val MODE_DNS_CLIENT = "dns_client"
@@ -55,6 +56,18 @@ object Settings {
 
     fun setLastListUpdate(context: Context, value: Long) {
         prefs(context).edit { putLong(K_LAST_LIST_UPDATE, value) }
+    }
+
+    /**
+     * Deep Blocking (experimental): route all traffic through the tun and run
+     * the SNI/HTTPS proxy as a second blocking layer. Off by default — it can
+     * affect streaming performance and does NOT remove in-stream (SSAI) ads.
+     */
+    fun isDeepBlocking(context: Context): Boolean =
+        prefs(context).getBoolean(K_DEEP_BLOCKING, false)
+
+    fun setDeepBlocking(context: Context, value: Boolean) {
+        prefs(context).edit { putBoolean(K_DEEP_BLOCKING, value) }
     }
 
     private fun prefs(context: Context) =

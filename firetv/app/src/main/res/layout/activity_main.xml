@@ -289,6 +289,45 @@
                 android:focusable="true" />
         </LinearLayout>
 
+        <!-- ── Deep Blocking (experimental) ────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/deep_blocking"
+                    android:textColor="@color/text"
+                    android:textSize="15sp" />
+
+                <Switch
+                    android:id="@+id/deepBlockingToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/deep_blocking_desc"
+                android:textColor="@color/muted"
+                android:textSize="12sp" />
+        </LinearLayout>
+
         <!-- ── Filter Lists (uBO / EasyList) ───────────────────────── -->
         <LinearLayout
             android:layout_width="match_parent"
