@@ -8,7 +8,6 @@ adserver.max.com
 tracking.max.com
 analytics.hbomax.com
 log.hbomax.com
-bam.max.com
 
 # Warner Bros. ad network
 ads.warnermediacdn.com

@@ -18,6 +18,11 @@ bamgrid.com
 dssott.com
 bamsdk.s3.amazonaws.com
 
+# Max (HBO Max / WBD) — BAMTech streaming backend (auth + playback start).
+# Blocking this breaks Max with "Something Went Wrong / trouble communicating
+# with the service" — it is NOT an ad domain.
+bam.max.com
+
 # Apple TV+
 itunesconnect.apple.com
 buy.itunes.apple.com
