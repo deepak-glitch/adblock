@@ -31,6 +31,15 @@
     <!-- Auto-start -->
     <string name="auto_start">Start automatically on boot</string>
 
+    <!-- Filter lists -->
+    <string name="filter_lists_label">Filter Lists</string>
+    <string name="update_lists">⟳ Update Filter Lists</string>
+    <string name="updating_lists">Updating filter lists…</string>
+    <string name="auto_update">Auto-update lists daily</string>
+    <string name="lists_updated">Updated %1$s · %2$d domains (uBO + EasyList)</string>
+    <string name="lists_bundled">Using bundled lists · %1$d domains</string>
+    <string name="lists_update_failed">Update failed — still blocking %1$d domains</string>
+
     <!-- Notifications -->
     <string name="notif_running_title">Stream AdBlock is running</string>
     <string name="notif_running_text">Blocking %1$d ad domains</string>

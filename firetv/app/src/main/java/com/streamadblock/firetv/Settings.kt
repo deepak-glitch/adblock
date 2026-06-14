@@ -11,6 +11,8 @@ object Settings {
     private const val K_MODE = "mode"
     private const val K_UPSTREAM = "upstream_dns"
     private const val K_AUTOSTART = "auto_start"
+    private const val K_AUTO_UPDATE = "auto_update_lists"
+    private const val K_LAST_LIST_UPDATE = "last_list_update"
 
     const val MODE_VPN = "vpn"
     const val MODE_DNS_CLIENT = "dns_client"
@@ -37,6 +39,22 @@ object Settings {
 
     fun setAutoStart(context: Context, value: Boolean) {
         prefs(context).edit { putBoolean(K_AUTOSTART, value) }
+    }
+
+    /** Whether downloaded filter lists refresh automatically (daily). */
+    fun isAutoUpdate(context: Context): Boolean =
+        prefs(context).getBoolean(K_AUTO_UPDATE, true)
+
+    fun setAutoUpdate(context: Context, value: Boolean) {
+        prefs(context).edit { putBoolean(K_AUTO_UPDATE, value) }
+    }
+
+    /** Epoch-millis of the last successful filter-list download (0 = never). */
+    fun getLastListUpdate(context: Context): Long =
+        prefs(context).getLong(K_LAST_LIST_UPDATE, 0L)
+
+    fun setLastListUpdate(context: Context, value: Long) {
+        prefs(context).edit { putLong(K_LAST_LIST_UPDATE, value) }
     }
 
     private fun prefs(context: Context) =

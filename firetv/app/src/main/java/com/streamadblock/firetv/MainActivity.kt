@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private var refreshJob: Job? = null
+    @Volatile private var updatingLists = false
 
     /** Receives VpnService.prepare() consent dialog result */
     private val vpnPermissionLauncher =
@@ -49,9 +50,57 @@ class MainActivity : AppCompatActivity() {
         }
         binding.autoStartToggle.isChecked = Settings.isAutoStart(this)
 
+        binding.autoUpdateToggle.isChecked = Settings.isAutoUpdate(this)
+        binding.autoUpdateToggle.setOnCheckedChangeListener { _, checked ->
+            Settings.setAutoUpdate(this, checked)
+        }
+        binding.updateListsButton.setOnClickListener { triggerListUpdate(manual = true) }
+        updateListStatus()
+
+        // Refresh the community filter lists (uBO / EasyList) in the background.
+        if (Settings.isAutoUpdate(this) && FilterListUpdater.shouldUpdate(this)) {
+            triggerListUpdate(manual = false)
+        }
+
         // Make the toggle button the initially focused element (Fire TV remote)
         binding.toggleButton.requestFocus()
     }
+
+    /** Download fresh filter lists off the main thread, then refresh the UI. */
+    private fun triggerListUpdate(manual: Boolean) {
+        if (updatingLists) return
+        updatingLists = true
+        if (manual) {
+            binding.listStatus.text = getString(R.string.updating_lists)
+            binding.updateListsButton.isEnabled = false
+        }
+        mainScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                FilterListUpdater.updateNow(this@MainActivity)
+            }
+            updatingLists = false
+            binding.updateListsButton.isEnabled = true
+            updateListStatus(result)
+            updateUi()
+        }
+    }
+
+    private fun updateListStatus(result: FilterListUpdater.Result? = null) {
+        val domains = BlocklistManager.blockedCount()
+        val last = Settings.getLastListUpdate(this)
+        binding.listStatus.text = when {
+            result != null && result.updated == 0 ->
+                getString(R.string.lists_update_failed, domains)
+            last > 0L ->
+                getString(R.string.lists_updated, formatDate(last), domains)
+            else ->
+                getString(R.string.lists_bundled, domains)
+        }
+    }
+
+    private fun formatDate(epochMs: Long): String =
+        java.text.SimpleDateFormat("MMM d", java.util.Locale.US)
+            .format(java.util.Date(epochMs))
 
     override fun onResume() {
         super.onResume()
