@@ -1,0 +1,33 @@
+# Max (HBO Max) ad-segment & telemetry hosts — community DNS recipe
+# Source: github.com/ajstrick81/HBO-Ads (AdGuard), adapted for DNS blocking.
+#
+# How it works: Max fetches its PLAYABLE manifest from playback.api.discomax.com
+# (kept ALLOWED in core/allowlist.txt). It then pulls AD segments + ad decisions
+# from the hosts below. Blocking these makes the ad fetches fail (NXDOMAIN); a
+# tolerant player skips the missing ad and keeps playing the show.
+#
+# Parent-domain walk means the base domain also covers its subdomains
+# (litix.io blocks *.litix.io, fwmrm.net blocks *.v.fwmrm.net, etc.).
+#
+# CAVEAT: validated on Onn TV / Android TV / PC with AdGuard. Some players
+# (possibly the Fire TV Max app) are NOT tolerant of missing ad segments and
+# may error ("Couldn't Play Content"). If Max breaks, this file is the revert
+# point — test on device.
+
+# Mux / video ad analytics
+litix.io
+
+# Freewheel ad decision + ad segment delivery
+fwmrm.net
+
+# Max "amer-free" ad-tier ad-segment CDN edges
+cf.amer-free.prd.media.max.com
+gcp.amer-free.prd.media.max.com
+fly.amer-free.prd.media.max.com
+akm.amer-free.prd.media.max.com
+
+# Discomax ad/stitching API node (NOT the playback API, which stays allowed)
+gmss.use2.prd.api.discomax.com
+
+# DNI ad/telemetry
+dnitv.com
