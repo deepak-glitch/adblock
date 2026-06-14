@@ -50,3 +50,16 @@ googlevideo.com
 ytimg.com
 yt3.ggpht.com
 i.ytimg.com
+
+# ── SSAI manifest/decision endpoints (Freewheel) ──────────────────────────
+# These sit ON the video playback path for ad-supported tiers (Max, Peacock,
+# Paramount+, CBS, NBC...). Blocking them does NOT remove ads — the ads are
+# stitched into the same stream — it only breaks playback ("Couldn't Play
+# Content / Error 20000"). So they must stay ALLOWED. In-stream SSAI ads on
+# these apps cannot be removed at the DNS layer regardless.
+mrad.fwmrm.net
+g.fwmrm.net
+cdn.fwmrm.net
+max.fwmrm.net
+wbd.fwmrm.net
+hbo.fwmrm.net
