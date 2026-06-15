@@ -190,5 +190,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 Licensed under the **MIT License**. For personal, educational use — blocking ads
 may conflict with a service's Terms of Service; use responsibly.
 
-> ⚠️ **Screenshots:** the dashboard above is an SVG mockup. To use real device
-> captures, drop them in `docs/img/` and swap the `docs/dashboard.svg` reference.
+> 📸 **Screenshots:** the banner and dashboard above are SVG **mockups** (so they
+> always render). To use real device captures, follow the 30-second guide in
+> [`docs/img/`](docs/img/) — drag your photos in via the GitHub web UI and they
+> swap right in.
