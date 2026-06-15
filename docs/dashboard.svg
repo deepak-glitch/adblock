@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 620" width="480" height="620" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="btn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#667EEA"/>
+      <stop offset="1" stop-color="#764BA2"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="620" rx="18" fill="#0F1117"/>
+
+  <!-- header -->
+  <text x="24" y="46" fill="#E2E8F0" font-size="28" font-weight="800">Stream AdBlock</text>
+  <text x="25" y="68" fill="#667EEA" font-size="13" font-weight="600">Primary: Hulu &amp; Max</text>
+  <rect x="356" y="28" width="100" height="30" rx="15" fill="#16351F"/>
+  <text x="406" y="48" fill="#48BB78" font-size="14" font-weight="600" text-anchor="middle">● Active</text>
+  <rect x="24" y="88" width="432" height="1" fill="#2E3347"/>
+
+  <!-- stat cards -->
+  <g>
+    <rect x="24"  y="104" width="100" height="86" rx="12" fill="#1A1D26"/>
+    <text x="74"  y="150" fill="#F56565" font-size="25" font-weight="800" text-anchor="middle">127</text>
+    <text x="74"  y="172" fill="#8892A4" font-size="10" font-weight="600" text-anchor="middle">TODAY</text>
+    <rect x="134" y="104" width="100" height="86" rx="12" fill="#1A1D26"/>
+    <text x="184" y="150" fill="#E2E8F0" font-size="23" font-weight="800" text-anchor="middle">4,389</text>
+    <text x="184" y="172" fill="#8892A4" font-size="10" font-weight="600" text-anchor="middle">TOTAL</text>
+    <rect x="244" y="104" width="100" height="86" rx="12" fill="#1A1D26"/>
+    <text x="294" y="150" fill="#667EEA" font-size="25" font-weight="800" text-anchor="middle">63%</text>
+    <text x="294" y="172" fill="#8892A4" font-size="9"  font-weight="600" text-anchor="middle">BLOCK RATE</text>
+    <rect x="354" y="104" width="100" height="86" rx="12" fill="#1A1D26"/>
+    <text x="404" y="150" fill="#F6AD55" font-size="23" font-weight="800" text-anchor="middle">48.2K</text>
+    <text x="404" y="172" fill="#8892A4" font-size="10" font-weight="600" text-anchor="middle">DOMAINS</text>
+  </g>
+
+  <!-- toggle button -->
+  <rect x="24" y="210" width="432" height="56" rx="14" fill="url(#btn)"/>
+  <text x="240" y="245" fill="#FFFFFF" font-size="19" font-weight="700" text-anchor="middle">■  Stop Ad Blocking</text>
+
+  <!-- mode picker -->
+  <text x="24" y="296" fill="#8892A4" font-size="11" font-weight="700" letter-spacing="1">BLOCKING MODE</text>
+  <rect x="24"  y="306" width="210" height="46" rx="10" fill="#242736" stroke="#667EEA" stroke-width="2"/>
+  <text x="129" y="334" fill="#E2E8F0" font-size="14" font-weight="600" text-anchor="middle">VPN (Standalone)</text>
+  <rect x="246" y="306" width="210" height="46" rx="10" fill="#1A1D26"/>
+  <text x="351" y="334" fill="#8892A4" font-size="14" font-weight="600" text-anchor="middle">DNS Client</text>
+
+  <!-- filter lists card -->
+  <rect x="24" y="368" width="432" height="124" rx="12" fill="#1A1D26"/>
+  <text x="40" y="392" fill="#8892A4" font-size="11" font-weight="700" letter-spacing="1">FILTER LISTS</text>
+  <text x="40" y="414" fill="#E2E8F0" font-size="12.5">Updated Jun 14 · 48,201 domains (uBO + EasyList)</text>
+  <rect x="40" y="426" width="290" height="34" rx="8" fill="#242736"/>
+  <text x="185" y="448" fill="#E2E8F0" font-size="13" font-weight="600" text-anchor="middle">⟳  Update Filter Lists</text>
+  <text x="40" y="482" fill="#E2E8F0" font-size="12">Auto-update lists daily</text>
+  <rect x="400" y="472" width="40" height="22" rx="11" fill="#48BB78"/>
+  <circle cx="429" cy="483" r="8" fill="#FFFFFF"/>
+
+  <!-- deep blocking card -->
+  <rect x="24" y="504" width="432" height="64" rx="12" fill="#1A1D26"/>
+  <text x="40" y="532" fill="#E2E8F0" font-size="13" font-weight="600">Deep Blocking (experimental)</text>
+  <text x="40" y="551" fill="#8892A4" font-size="10.5">HTTPS/SNI layer · may affect streaming · off by default</text>
+  <rect x="400" y="524" width="40" height="22" rx="11" fill="#2E3347"/>
+  <circle cx="411" cy="535" r="8" fill="#8892A4"/>
+
+  <text x="240" y="598" fill="#8892A4" font-size="10" text-anchor="middle">© Stream AdBlock · targeting Hulu &amp; Max</text>
+</svg>
